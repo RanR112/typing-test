@@ -1,0 +1,37 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.typing {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  height: 1.5rem;
+  width: 10rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-family: monospace; 
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 1px;
+  min-height: 60px;
+  text-align: left;
+}
