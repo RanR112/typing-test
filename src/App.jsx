@@ -130,18 +130,16 @@ function App() {
     }
 
     function handleInputChange(e) {
-        const value = e.target.value;
-    
-        // Jika user menekan spasi di mobile (dapat dideteksi dengan substring terakhir)
-        if (value.endsWith(' ')) {
-            handleKeyDown({ key: ' ' }); // Simulasikan key press
-        } else {
-            setInputValue(value); // Update input normal
-        }
-
         const newValue = e.target.value;
+    
+        // Jika user menekan spasi (hanya jika terakhir adalah spasi)
+        if (newValue.endsWith(' ')) {
+            handleKeyDown({ key: ' ' });
+            return; // Hindari update state dua kali
+        }
+    
         setInputValue(newValue);
-        
+    
         // Check for errors in current input
         if (!hasTypingError && newValue.length <= currentWord.length) {
             for (let i = 0; i < newValue.length; i++) {
@@ -153,6 +151,7 @@ function App() {
             }
         }
     }
+    
 
     function handleKeyDown(e) {
         // Check if space key is pressed
