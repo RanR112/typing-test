@@ -130,6 +130,15 @@ function App() {
     }
 
     function handleInputChange(e) {
+        const value = e.target.value;
+    
+        // Jika user menekan spasi di mobile (dapat dideteksi dengan substring terakhir)
+        if (value.endsWith(' ')) {
+            handleKeyDown({ key: ' ' }); // Simulasikan key press
+        } else {
+            setInputValue(value); // Update input normal
+        }
+
         const newValue = e.target.value;
         setInputValue(newValue);
         
@@ -147,7 +156,7 @@ function App() {
 
     function handleKeyDown(e) {
         // Check if space key is pressed
-        if (e.key === ' ') {
+        if (e.key === ' ' ) {
             e.preventDefault(); // Prevent default space behavior
             
             // Check if current input matches current word exactly
