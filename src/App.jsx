@@ -146,8 +146,8 @@ function App() {
     }
 
     function handleKeyDown(e) {
-        // Check if space key is pressed
-        if (e.key === ' ' ) {
+        // Check if space key is pressed (works on all devices)
+        if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
             e.preventDefault(); // Prevent default space behavior
             
             // Check if current input matches current word exactly
