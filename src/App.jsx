@@ -33,7 +33,7 @@ function App() {
         setTotalCharacters(chars);
         
         // Calculate time limit based on text length (1 minute per 200 characters, minimum 1 minute)
-        const calculatedTimeLimit = Math.max(60, Math.ceil(chars / 200) * 60);
+        const calculatedTimeLimit = Math.max(30, Math.ceil(chars / 100) * 30);
         setTimeLimit(calculatedTimeLimit);
         setTimeRemaining(calculatedTimeLimit);
     }, [randomText]);
@@ -122,7 +122,7 @@ function App() {
         setIsTimedOut(false);
         // Reset the time limit and remaining time
         const chars = randomText.text.length;
-        const calculatedTimeLimit = Math.max(60, Math.ceil(chars / 200) * 60);
+        const calculatedTimeLimit = Math.max(30, Math.ceil(chars / 100) * 30);
         setTimeLimit(calculatedTimeLimit);
         setTimeRemaining(calculatedTimeLimit);
         clearInterval(timerRef.current);
@@ -319,7 +319,7 @@ function App() {
                     textAlign: 'center',
                     border: '1px solid #ddd'
                 }}>
-                    <span style={{ fontWeight: 'bold', fontSize: '18px', color: timeRemaining < 10 ? 'red' : timeRemaining < 30 ? 'orange' : '#333' }}>
+                    <span style={{ fontWeight: 'bold', fontSize: '18px', color: timeRemaining < ((timeLimit/100) * 15) ? 'red' : timeRemaining < ((timeLimit/100) * 30) ? 'orange' : '#333' }}>
                         {formatTime(timeRemaining)}
                     </span>
                 </div>
@@ -350,7 +350,7 @@ function App() {
                 <button onClick={handleStartClick}>New Text</button>
                 
                 {(isCompleted || isTimedOut) && (
-                    <div className="results" style={{ width: '30%', marginTop: '20px', padding: '15px', border: '1px solid #ccc', borderRadius: '5px' }}>
+                    <div className="results" style={{  marginTop: '20px', padding: '15px', border: '1px solid #ccc', borderRadius: '5px' }}>
                         <h3>Hasil Mengetik</h3>
                         <p>Total Karakter: {totalCharacters}</p>
                         <p>Kata Per Menit (WPM): <span style={{ fontWeight: 'bold', color: wpm > 40 ? 'green' : wpm > 25 ? 'orange' : 'red' }}>{wpm}</span></p>
