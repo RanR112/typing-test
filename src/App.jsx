@@ -32,7 +32,7 @@ function App() {
         const chars = randomText.text.length;
         setTotalCharacters(chars);
         
-        // Calculate time limit based on text length (1 minute per 200 characters, minimum 1 minute)
+        // Calculate time limit based on text length (30 seconds per 100 characters, minimum 30 seconds)
         const calculatedTimeLimit = Math.max(30, Math.ceil(chars / 100) * 30);
         setTimeLimit(calculatedTimeLimit);
         setTimeRemaining(calculatedTimeLimit);
@@ -77,8 +77,6 @@ function App() {
             
             // Check if we've reached the last word and have entered it correctly
             if (isLastWord) {
-                // Add current word to completed words
-                // setCompletedWords(prev => [...prev, { word: currentWord, isCorrect: true }]);
                 // This is the last word, complete the exercise
                 setIsCompleted(true);
                 setEndTime(Date.now());
