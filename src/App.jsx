@@ -131,6 +131,35 @@ function App() {
 
     function handleInputChange(e) {
         const newValue = e.target.value;
+        
+        // Handle space for mobile devices by checking if the last character is a space
+        if (newValue.endsWith(' ') && newValue.length > inputValue.length) {
+            // Same logic as handleKeyDown for space key
+            const inputWithoutSpace = newValue.slice(0, -1); // Remove the trailing space
+            const isExactMatch = inputWithoutSpace === currentWord;
+            
+            if (isExactMatch) {
+                // Add current word to completed words
+                setCompletedWords(prev => [...prev, { word: currentWord, isCorrect: true }]);
+                
+                // Move to next word
+                setCurrentWordIndex(currentWordIndex + 1);
+                
+                // Reset input
+                setInputValue('');
+                setHasTypingError(false);
+                
+                // Check if we've reached the end
+                if (currentWordIndex === words.length - 1) {
+                    setIsCompleted(true);
+                    setEndTime(Date.now());
+                    setIsActive(false);
+                    calculateWPM();
+                }
+                return; // Exit the function after handling the space
+            }
+        }
+        
         setInputValue(newValue);
         
         // Check for errors in current input
