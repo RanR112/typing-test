@@ -78,7 +78,7 @@ function App() {
             // Check if we've reached the last word and have entered it correctly
             if (isLastWord) {
                 // Add current word to completed words
-                setCompletedWords(prev => [...prev, { word: currentWord, isCorrect: true }]);
+                // setCompletedWords(prev => [...prev, { word: currentWord, isCorrect: true }]);
                 // This is the last word, complete the exercise
                 setIsCompleted(true);
                 setEndTime(Date.now());
